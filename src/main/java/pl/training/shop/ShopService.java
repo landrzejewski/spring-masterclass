@@ -39,7 +39,6 @@ public class ShopService {
 
     public Payment payForOrder(long orderId) {
         var order = orderService.getById(orderId);
-
         var paymentRequest = PaymentRequest.builder()
                 .money(order.getTotalPrice())
                 .build();
