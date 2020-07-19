@@ -25,7 +25,7 @@ public class ShopService {
         return productService.add(product);
     }
 
-    public List<Product> getByName(String name) {
+    public List<Product> getProductByName(String name) {
         return productService.getByName(name);
     }
 
@@ -38,7 +38,8 @@ public class ShopService {
     }
 
     public Payment payForOrder(long orderId) {
-        var order = orderService.getBy(orderId);
+        var order = orderService.getById(orderId);
+
         var paymentRequest = PaymentRequest.builder()
                 .money(order.getTotalPrice())
                 .build();
