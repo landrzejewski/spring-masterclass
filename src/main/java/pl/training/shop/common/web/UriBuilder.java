@@ -1,4 +1,4 @@
-package pl.training.shop.common;
+package pl.training.shop.common.web;
 
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 

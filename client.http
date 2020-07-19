@@ -4,10 +4,15 @@ Content-Type: application/json
 {
   "firstName": "Jan",
   "lastName": "Kowalski",
-  "email": "jan.kowalski@trainig.pl"
+  "emailAddress": "jan.kowalski@trainig.pl"
 }
 
 ###
 
 GET http://localhost:8080/api/users/1
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/users?lastNameFragment=Kow
 Accept: application/json
