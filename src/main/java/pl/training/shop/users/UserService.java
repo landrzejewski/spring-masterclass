@@ -3,8 +3,10 @@ package pl.training.shop.users;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.transaction.annotation.Transactional;
 import pl.training.shop.common.PagedResult;
 
+@Transactional
 @RequiredArgsConstructor
 public class UserService {
 

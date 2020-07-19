@@ -1,0 +1,13 @@
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "firstName": "Jan",
+  "lastName": "Kowalski",
+  "email": "jan.kowalski@trainig.pl"
+}
+
+###
+
+GET http://localhost:8080/api/users/1
+Accept: application/json

@@ -1,8 +1,10 @@
 package pl.training.shop.orders;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 import pl.training.shop.common.validator.Validate;
 
+@Transactional
 @RequiredArgsConstructor
 public class OrderService {
 
