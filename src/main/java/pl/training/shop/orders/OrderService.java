@@ -12,8 +12,8 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
-    public Order getBy(Long orderId) {
-        return orderRepository.findById(orderId)
+    public Order getById(Long id) {
+        return orderRepository.findById(id)
                 .orElseThrow(OrderNotFoundException::new);
     }
 
