@@ -32,6 +32,14 @@ public class MvcConfiguration implements WebMvcConfigurer {
     }
 
     @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/api/**")
+                .allowedMethods("*")
+                .allowedHeaders("*")
+                .allowedOrigins("http://localhost:4200");
+    }
+
+    @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         registry.jsp("/WEB-INF/views/", ".jsp");
     }

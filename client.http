@@ -4,7 +4,7 @@ Content-Type: application/json
 {
   "firstName": "Jan",
   "lastName": "Kowalski",
-  "emailAddress": "jan.kowalski6@trainig.pl"
+  "emailAddress": "jan.kowalski@trainig.pl"
 }
 
 ###
