@@ -18,7 +18,7 @@ public class User {
     @GeneratedValue
     @Id
     private Long id;
-    @Pattern(regexp = "[A-Za-z]")
+    @Pattern(regexp = "[A-Za-z]+")
     @Column(name = "first_name", nullable = false)
     private String firstName;
     @Name
