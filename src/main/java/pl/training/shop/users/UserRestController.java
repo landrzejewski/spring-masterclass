@@ -1,12 +1,10 @@
 package pl.training.shop.users;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.training.shop.common.PagedResult;
-import pl.training.shop.common.web.ExceptionTransferObject;
 import pl.training.shop.common.web.PagedResultTransferObject;
 import pl.training.shop.common.web.UriBuilder;
 
@@ -19,7 +17,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RequestMapping("api/users")
 @RestController
 @RequiredArgsConstructor
-public class UserController {
+public class UserRestController {
 
     private final UserService userService;
     private final UserMapper userMapper;
@@ -40,7 +38,7 @@ public class UserController {
     public ResponseEntity<UserTransferObject> getUser(@PathVariable Long id) {
         User user = userService.getById(id);
         UserTransferObject userTransferObject = userMapper.toUserTransferObject(user);
-        userTransferObject.add(linkTo(methodOn(UserController.class).getUser(id)).withSelfRel());
+        userTransferObject.add(linkTo(methodOn(UserRestController.class).getUser(id)).withSelfRel());
         return ResponseEntity.ok(userTransferObject);
     }
 
