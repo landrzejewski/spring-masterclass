@@ -4,7 +4,7 @@ Content-Type: application/json
 {
   "firstName": "Jan",
   "lastName": "Kowalski",
-  "emailAddress": "jan.kowalski@trainig.pl"
+  "emailAddress": "jan.kowalski2@trainig.pl"
 }
 
 ###
@@ -16,3 +16,21 @@ Accept: application/json
 
 GET http://localhost:8080/api/users?lastNameFragment=Kow
 Accept: application/json
+
+###
+
+POST http://localhost:8080/api/products
+Content-Type: application/json
+
+{
+  "name": "Jan",
+  "description": "Kowalski",
+  "price": "100 PLN",
+  "type": "EBOOK"
+}
+
+###
+
+GET http://localhost:8080/api/products
+Accept: application/json
+

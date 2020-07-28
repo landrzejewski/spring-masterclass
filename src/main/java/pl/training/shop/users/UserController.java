@@ -1,12 +1,10 @@
 package pl.training.shop.users;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.training.shop.common.PagedResult;
-import pl.training.shop.common.web.ExceptionTransferObject;
 import pl.training.shop.common.web.PagedResultTransferObject;
 import pl.training.shop.common.web.UriBuilder;
 

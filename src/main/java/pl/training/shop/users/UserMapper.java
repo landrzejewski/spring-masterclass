@@ -17,8 +17,8 @@ public interface UserMapper {
     @Mapping(source = "email", target = "emailAddress")
     UserTransferObject toUserTransferObject(User user);
 
-    @IterableMapping(elementTargetType = UserTransferObject.class)
-    List<UserTransferObject> toUserTransferObjects(List<User> users);
+    /*@IterableMapping(elementTargetType = UserTransferObject.class)
+    List<UserTransferObject> toUserTransferObjects(List<User> users);*/
 
     PagedResultTransferObject<UserTransferObject> toUserTransferObjectsPage(PagedResult<User> usersPage);
 
