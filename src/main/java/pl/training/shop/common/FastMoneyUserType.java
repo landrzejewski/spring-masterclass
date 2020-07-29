@@ -2,14 +2,13 @@ package pl.training.shop.common;
 
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
-import org.hibernate.type.LongType;
+import org.hibernate.type.DoubleType;
 import org.hibernate.type.StringType;
 import org.hibernate.type.Type;
 import org.hibernate.usertype.CompositeUserType;
 import org.javamoney.moneta.FastMoney;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,11 +17,11 @@ import java.util.Objects;
 public class FastMoneyUserType implements CompositeUserType {
 
     public String[] getPropertyNames() {
-        return new String[]{"currency", "amount"};
+        return new String[] {"currency", "amount"};
     }
 
     public Type[] getPropertyTypes() {
-        return new Type[]{StringType.INSTANCE, LongType.INSTANCE};
+        return new Type[]{StringType.INSTANCE, DoubleType.INSTANCE};
     }
 
     @Override
@@ -34,12 +33,12 @@ public class FastMoneyUserType implements CompositeUserType {
         if (component == null) {
             return null;
         }
-        FastMoney money = (FastMoney) component;
+        var money = (FastMoney) component;
         switch (propertyIndex) {
             case 0:
                 return money.getCurrency().getCurrencyCode();
             case 1:
-                return money.getNumber().numberValue(Long.class);
+                return money.getNumber().numberValue(Double.class);
             default:
                 throw new HibernateException("Invalid property index [" + propertyIndex + "]");
         }
@@ -56,9 +55,9 @@ public class FastMoneyUserType implements CompositeUserType {
     public Object nullSafeGet(ResultSet resultSet, String[] names, SharedSessionContractImplementor session, Object object) throws SQLException, SQLException {
         assert names.length == 2;
         FastMoney money = null;
-        String currency = resultSet.getString(names[0]);
+        var currency = resultSet.getString(names[0]);
         if (!resultSet.wasNull()) {
-            Long amount = resultSet.getLong(names[1]);
+            var amount = resultSet.getDouble(names[1]);
             money = FastMoney.of(amount, currency);
         }
         return money;
@@ -68,11 +67,11 @@ public class FastMoneyUserType implements CompositeUserType {
     public void nullSafeSet(PreparedStatement preparedStatement, Object value, int property, SharedSessionContractImplementor session) throws SQLException {
         if (null == value) {
             preparedStatement.setNull(property, StringType.INSTANCE.sqlType());
-            preparedStatement.setNull(property + 1, LongType.INSTANCE.sqlType());
+            preparedStatement.setNull(property + 1, DoubleType.INSTANCE.sqlType());
         } else {
             FastMoney amount = (FastMoney) value;
             preparedStatement.setString(property, amount.getCurrency().getCurrencyCode());
-            preparedStatement.setLong(property + 1, amount.getNumber().numberValue(Long.class));
+            preparedStatement.setDouble(property + 1, amount.getNumber().numberValue(Double.class));
         }
     }
 
