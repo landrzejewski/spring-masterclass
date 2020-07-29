@@ -3,9 +3,7 @@ package pl.training.shop.common.web;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Value;
 import org.springframework.hateoas.RepresentationModel;
-import pl.training.shop.users.UserTransferObject;
 
 import java.util.List;
 

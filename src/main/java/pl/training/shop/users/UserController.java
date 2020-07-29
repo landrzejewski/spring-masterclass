@@ -1,17 +1,13 @@
 package pl.training.shop.users;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.training.shop.common.PagedResult;
-import pl.training.shop.common.web.ExceptionTransferObject;
 import pl.training.shop.common.web.PagedResultTransferObject;
 import pl.training.shop.common.web.UriBuilder;
 
 import javax.validation.Valid;
-import java.net.URI;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -30,16 +26,16 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().build();
         }
-        User user = userMapper.toUser(userTransferObject);
-        Long userId = userService.add(user).getId();
-        URI locationUri = uriBuilder.requestUriWithId(userId);
+        var user = userMapper.toUser(userTransferObject);
+        var userId = userService.add(user).getId();
+        var locationUri = uriBuilder.requestUriWithId(userId);
         return ResponseEntity.created(locationUri).build();
     }
 
     @GetMapping("{id}")
     public ResponseEntity<UserTransferObject> getUser(@PathVariable Long id) {
-        User user = userService.getById(id);
-        UserTransferObject userTransferObject = userMapper.toUserTransferObject(user);
+        var user = userService.getById(id);
+        var userTransferObject = userMapper.toUserTransferObject(user);
         userTransferObject.add(linkTo(methodOn(UserController.class).getUser(id)).withSelfRel());
         return ResponseEntity.ok(userTransferObject);
     }
@@ -49,7 +45,7 @@ public class UserController {
             @RequestParam String lastNameFragment,
             @RequestParam(defaultValue = "0") int pageNumber,
             @RequestParam(defaultValue = "5") int pageSize) {
-        PagedResult<User> users = userService.getByLastName(lastNameFragment, pageNumber, pageSize);
+        var users = userService.getByLastName(lastNameFragment, pageNumber, pageSize);
         return userMapper.toUserTransferObjectsPage(users);
     }
 
