@@ -34,3 +34,13 @@ Content-Type: application/json
 GET http://localhost:8080/api/products
 Accept: application/json
 
+###
+
+POST http://localhost:8080/api/products/1/files
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="pom.xml"
+
+< ./pom.xml
+--WebAppBoundary--

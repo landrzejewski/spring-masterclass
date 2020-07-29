@@ -4,10 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import pl.training.shop.common.web.PagedResultTransferObject;
 import pl.training.shop.common.web.UriBuilder;
 
 import javax.validation.Valid;
+import java.io.IOException;
 
 @RequestMapping("api/products")
 @RestController
@@ -36,6 +38,13 @@ public class ProductController {
             @RequestParam(defaultValue = "5") int pageSize) {
         var products = productService.getAll(pageNumber, pageSize);
         return productMapper.toProductTransferObjectsPage(products);
+    }
+
+    // Check MvcConfiguration and WebInitializer config
+    @RequestMapping(value = "{id}/files", method = RequestMethod.POST)
+    public String submit(@PathVariable Long id, @RequestParam MultipartFile file) {
+        // Save file to some kind of storage
+        return "File " + file.getOriginalFilename() + " uploaded";
     }
 
 }
