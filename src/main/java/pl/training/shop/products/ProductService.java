@@ -30,7 +30,7 @@ public class ProductService {
     }
 
     public PagedResult<Product> getAll(int pageNumber, int pageSize) {
-        Page<Product> productPage = productRepository.findAll(PageRequest.of(pageNumber,pageSize));
+        var productPage = productRepository.findAll(PageRequest.of(pageNumber,pageSize));
         return new PagedResult<>(productPage.getContent(), pageNumber, productPage.getTotalPages());
     }
 
