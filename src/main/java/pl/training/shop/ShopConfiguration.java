@@ -35,7 +35,7 @@ public class ShopConfiguration {
 
     @Bean
     public MessageSource messageSource() {
-        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+        var messageSource = new ResourceBundleMessageSource();
         messageSource.setBasename("messages");
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
@@ -43,7 +43,7 @@ public class ShopConfiguration {
 
     @Bean
     public DataSource dataSource(Environment environment) {
-        HikariDataSource dataSource = new HikariDataSource();
+        var dataSource = new HikariDataSource();
         dataSource.setUsername(environment.getProperty("database.username"));
         dataSource.setPassword(environment.getProperty("database.password"));
         dataSource.setJdbcUrl(environment.getProperty("database.url"));
@@ -53,14 +53,14 @@ public class ShopConfiguration {
 
     @Bean
     public PropertiesFactoryBean hibernateProperties() {
-        PropertiesFactoryBean factoryBean = new PropertiesFactoryBean();
+        var factoryBean = new PropertiesFactoryBean();
         factoryBean.setLocation(new ClassPathResource("hibernate.properties"));
         return factoryBean;
     }
 
     @Bean
     public LocalSessionFactoryBean sessionFactory(DataSource dataSource, Properties hibernateProperties) {
-        LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
+        var factoryBean = new LocalSessionFactoryBean();
         factoryBean.setDataSource(dataSource);
         factoryBean.setHibernateProperties(hibernateProperties);
         factoryBean.setPackagesToScan("pl.training.shop");
