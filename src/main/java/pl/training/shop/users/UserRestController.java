@@ -28,16 +28,16 @@ public class UserRestController {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().build();
         }
-        User user = userMapper.toUser(userTransferObject);
-        Long userId = userService.add(user).getId();
-        URI locationUri = uriBuilder.requestUriWithId(userId);
+        var user = userMapper.toUser(userTransferObject);
+        var userId = userService.add(user).getId();
+        var locationUri = uriBuilder.requestUriWithId(userId);
         return ResponseEntity.created(locationUri).build();
     }
 
     @GetMapping("{id}")
     public ResponseEntity<UserTransferObject> getUser(@PathVariable Long id) {
-        User user = userService.getById(id);
-        UserTransferObject userTransferObject = userMapper.toUserTransferObject(user);
+        var user = userService.getById(id);
+        var userTransferObject = userMapper.toUserTransferObject(user);
         userTransferObject.add(linkTo(methodOn(UserRestController.class).getUser(id)).withSelfRel());
         return ResponseEntity.ok(userTransferObject);
     }
@@ -47,7 +47,7 @@ public class UserRestController {
             @RequestParam String lastNameFragment,
             @RequestParam(defaultValue = "0") int pageNumber,
             @RequestParam(defaultValue = "5") int pageSize) {
-        PagedResult<User> users = userService.getByLastName(lastNameFragment, pageNumber, pageSize);
+        var users = userService.getByLastName(lastNameFragment, pageNumber, pageSize);
         return userMapper.toUserTransferObjectsPage(users);
     }
 

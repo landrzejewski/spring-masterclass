@@ -32,7 +32,7 @@ public class GlobalExceptionHandler {
     }
 
     private ResponseEntity<ExceptionTransferObject> createResponse(Exception ex, HttpStatus status, Locale locale) {
-        String exceptionName = ex.getClass().getSimpleName();
+        var exceptionName = ex.getClass().getSimpleName();
         String description;
         try {
             description = messageSource.getMessage(ex.getClass().getSimpleName(), null, locale);

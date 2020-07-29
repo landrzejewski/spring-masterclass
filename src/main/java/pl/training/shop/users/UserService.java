@@ -1,7 +1,6 @@
 package pl.training.shop.users;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.transaction.annotation.Transactional;
 import pl.training.shop.common.PagedResult;
@@ -22,12 +21,12 @@ public class UserService {
     }
 
     public PagedResult<User> getByLastName(String lastNameFragment, int pageNumber, int pageSize) {
-        Page<User> userPage = usersRepository.findByLastNameContaining(lastNameFragment, PageRequest.of(pageNumber, pageSize));
+        var userPage = usersRepository.findByLastNameContaining(lastNameFragment, PageRequest.of(pageNumber, pageSize));
         return new PagedResult<>(userPage.getContent(), pageNumber, userPage.getTotalPages());
     }
 
     public PagedResult<User> getAll(int pageNumber, int pageSize) {
-        Page<User> userPage = usersRepository.findAll(PageRequest.of(pageNumber, pageSize));
+        var userPage = usersRepository.findAll(PageRequest.of(pageNumber, pageSize));
         return new PagedResult<>(userPage.getContent(), pageNumber, userPage.getTotalPages());
     }
 
