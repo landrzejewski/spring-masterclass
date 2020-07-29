@@ -25,7 +25,7 @@ Content-Type: application/json
 {
   "name": "Jan",
   "description": "Kowalski",
-  "price": "100 PLN",
+  "price": "100.99 PLN",
   "type": "EBOOK"
 }
 
