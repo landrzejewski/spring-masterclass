@@ -17,14 +17,14 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> addUser(@RequestBody User user) {
-        Long userId = userService.add(user).getId();
-        URI locationUri = uriBuilder.requestUriWithId(userId);
+        var userId = userService.add(user).getId();
+        var locationUri = uriBuilder.requestUriWithId(userId);
         return ResponseEntity.created(locationUri).build();
     }
 
     @GetMapping("{id}")
     public ResponseEntity<User> getUser(@PathVariable Long id) {
-        User user = userService.getById(id);
+        var user = userService.getById(id);
         return ResponseEntity.ok(user);
     }
 

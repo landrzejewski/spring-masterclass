@@ -6,16 +6,15 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
 
 public class WebInitializer implements WebApplicationInitializer {
 
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
-        AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext();
+        var applicationContext = new AnnotationConfigWebApplicationContext();
         applicationContext.register(MvcConfiguration.class);
-        DispatcherServlet dispatcherServlet = new DispatcherServlet(applicationContext);
-        ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher", dispatcherServlet);
+        var dispatcherServlet = new DispatcherServlet(applicationContext);
+        var dispatcher = servletContext.addServlet("dispatcher", dispatcherServlet);
         dispatcher.addMapping("/");
         dispatcher.setLoadOnStartup(1);
     }
