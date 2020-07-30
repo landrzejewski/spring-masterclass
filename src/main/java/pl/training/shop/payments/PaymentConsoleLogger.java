@@ -47,7 +47,6 @@ public class PaymentConsoleLogger implements Ordered {
         return messageSource.getMessage(MESSAGE_KEY, new String[] { payment.getMoney().toString() }, Locale.getDefault());
     }
 
-
     @Override
     public int getOrder() {
         return 50;

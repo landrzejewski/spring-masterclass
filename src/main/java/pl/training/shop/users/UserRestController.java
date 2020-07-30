@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-@RequestMapping("api/users")
+@RequestMapping("${apiPrefix}/users")
 @RestController
 @RequiredArgsConstructor
 public class UserRestController {

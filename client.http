@@ -23,8 +23,8 @@ POST http://localhost:8080/api/products
 Content-Type: application/json
 
 {
-  "name": "Jan",
-  "description": "Kowalski",
+  "name": "Microservices in practice (e-book)",
+  "description": "Book",
   "price": "100.99 PLN",
   "type": "EBOOK"
 }

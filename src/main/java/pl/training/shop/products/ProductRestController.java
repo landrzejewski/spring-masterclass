@@ -10,7 +10,7 @@ import pl.training.shop.common.web.UriBuilder;
 
 import javax.validation.Valid;
 
-@RequestMapping("api/products")
+@RequestMapping("${apiPrefix}/products")
 @RestController
 @RequiredArgsConstructor
 public class ProductRestController {
