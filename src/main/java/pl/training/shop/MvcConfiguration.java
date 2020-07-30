@@ -45,6 +45,7 @@ public class MvcConfiguration implements WebMvcConfigurer {
         registry.addViewController("index.html").setViewName("index");
     }
 
+
     @Bean
     public LinkDiscoverers discoverers() {
         List<LinkDiscoverer> plugins = new ArrayList<>();
