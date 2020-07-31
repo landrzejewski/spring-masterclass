@@ -9,7 +9,6 @@ import javax.validation.constraints.NotEmpty;
 @Data
 public class ProductTransferObject extends RepresentationModel<ProductTransferObject> {
 
-    private Long id;
     @NotEmpty
     private String name;
     @Length(min = 3, max = 255)
