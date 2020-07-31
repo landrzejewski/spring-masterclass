@@ -1,28 +1,14 @@
 package pl.training.shop.products;
 
-import org.javamoney.moneta.FastMoney;
+import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.ValueMapping;
+import pl.training.shop.common.web.FastMoneyMapper;
 import pl.training.shop.common.PagedResult;
 import pl.training.shop.common.web.PagedResultTransferObject;
-import pl.training.shop.payments.LocalMoney;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = FastMoneyMapper.class)
 public interface ProductMapper {
-
-    default FastMoney toFastMoney(String price) {
-        if (price == null) {
-            return LocalMoney.of(0);
-        }
-        return FastMoney.parse(price);
-    }
-
-    default String toPrice(FastMoney price) {
-        if (price == null) {
-            return "";
-        }
-        return price.toString();
-    }
 
     Product toProduct(ProductTransferObject productTransferObject);
 
@@ -35,9 +21,7 @@ public interface ProductMapper {
     @ValueMapping(source = "VIDEO", target = "VIDEO")
     ProductTypeTransferObject toProductTypeTransferObject(ProductType productType);
 
-    @ValueMapping(source = "EBOOK", target = "BOOK")
-    @ValueMapping(source = "MUSIC", target = "AUDIO")
-    @ValueMapping(source = "VIDEO", target = "VIDEO")
+    @InheritInverseConfiguration
     ProductType toProductType(ProductTypeTransferObject productTypeTransferObject);
 
 }

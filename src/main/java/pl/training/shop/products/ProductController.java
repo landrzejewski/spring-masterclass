@@ -9,7 +9,6 @@ import pl.training.shop.common.web.PagedResultTransferObject;
 import pl.training.shop.common.web.UriBuilder;
 
 import javax.validation.Valid;
-import java.io.IOException;
 
 @RequestMapping("api/products")
 @RestController
@@ -18,7 +17,6 @@ public class ProductController {
 
     private final ProductService productService;
     private final ProductMapper productMapper;
-
     private final UriBuilder uriBuilder = new UriBuilder();
 
     @PostMapping
@@ -27,6 +25,7 @@ public class ProductController {
             return ResponseEntity.badRequest().build();
         }
         var product = productMapper.toProduct(productTransferObject);
+        product.setId(null);
         var productId = productService.add(product).getId();
         var locationUri = uriBuilder.requestUriWithId(productId);
         return ResponseEntity.created(locationUri).build();
