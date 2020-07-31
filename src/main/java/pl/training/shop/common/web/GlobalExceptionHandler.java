@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import pl.training.shop.products.ProductNotFoundException;
 import pl.training.shop.users.UserNotFoundException;
 
 import java.util.Locale;
@@ -28,6 +29,11 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<ExceptionTransferObject> onUserNotFoundException(UserNotFoundException ex, Locale locale) {
+        return createResponse(ex, NOT_FOUND, locale);
+    }
+
+    @ExceptionHandler(ProductNotFoundException.class)
+    public ResponseEntity<ExceptionTransferObject> onUserNotFoundException(ProductNotFoundException ex, Locale locale) {
         return createResponse(ex, NOT_FOUND, locale);
     }
 

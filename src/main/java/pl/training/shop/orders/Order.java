@@ -27,7 +27,7 @@ public class Order {
     @NotEmpty
     @NonNull
     private List<Product> products;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @Valid
     private Payment payment;
     private Instant timestamp;

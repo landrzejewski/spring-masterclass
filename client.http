@@ -31,6 +31,19 @@ Content-Type: application/json
 
 ###
 
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+
+{
+  "products": [
+    {
+      "id": 1
+    }
+  ]
+}
+
+###
+
 GET http://localhost:8080/api/products
 Accept: application/json
 
