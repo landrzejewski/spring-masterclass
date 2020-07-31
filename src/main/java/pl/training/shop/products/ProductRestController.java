@@ -17,7 +17,6 @@ public class ProductRestController {
 
     private final ProductService productService;
     private final ProductMapper productMapper;
-
     private final UriBuilder uriBuilder = new UriBuilder();
 
     @PostMapping
@@ -26,6 +25,7 @@ public class ProductRestController {
             return ResponseEntity.badRequest().build();
         }
         var product = productMapper.toProduct(productTransferObject);
+        product.setId(null);
         var productId = productService.add(product).getId();
         var locationUri = uriBuilder.requestUriWithId(productId);
         return ResponseEntity.created(locationUri).build();
