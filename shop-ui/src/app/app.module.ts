@@ -8,18 +8,21 @@ import {Api} from "./api";
 import { UsersListComponent } from './component/users-list/users-list.component';
 import {UserService} from "./service/user.service";
 import { UserFormComponent } from './component/user-form/user-form.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { UsersSearchComponent } from './component/users-search/users-search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersListComponent,
-    UserFormComponent
+    UserFormComponent,
+    UsersSearchComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [

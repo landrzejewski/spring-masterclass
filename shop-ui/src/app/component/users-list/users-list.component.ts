@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {PagedResultModel} from "../../model/paged-result.model";
 import {UserModel} from "../../model/user.model";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-users-list',
@@ -17,8 +18,7 @@ export class UsersListComponent {
   }
 
   private reload(pageNumber: number) {
-    this.userService.getUsers(pageNumber)
-      .subscribe(pagedResult => this.pagedResult = pagedResult, error => console.log(error));
+    this.refreshUsers(this.userService.getUsers("", pageNumber));
   }
 
   previous() {
@@ -27,6 +27,11 @@ export class UsersListComponent {
 
   next() {
     this.reload(this.pagedResult.pageNumber + 1);
+  }
+
+  refreshUsers(observable: Observable<PagedResultModel<UserModel>>) {
+      observable
+        .subscribe(pagedResult => this.pagedResult = pagedResult, error => console.log(error));
   }
 
 }

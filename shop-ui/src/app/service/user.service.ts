@@ -15,8 +15,8 @@ export class UserService {
     return this.httpClient.post<UserModel>(this.api.users, user);
   }
 
-  getUsers(pageNumber = 0, pageSize = 5): Observable<PagedResultModel<UserModel>> {
-    const params = { pageNumber: `${pageNumber}`, pageSize: `${pageSize}`, lastNameFragment: "" };
+  getUsers(lastNameFragment = "", pageNumber = 0, pageSize = 5): Observable<PagedResultModel<UserModel>> {
+    const params = { pageNumber: `${pageNumber}`, pageSize: `${pageSize}`, lastNameFragment };
     return this.httpClient.get<PagedResultModel<UserModel>>(this.api.users, { params });
   }
 
