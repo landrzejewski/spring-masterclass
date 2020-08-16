@@ -1,0 +1,51 @@
+1. Dodać użytkownika z uprawnieniami Management
+
+./add-user.sh
+
+2. Skopiować sterownik postgre do wildfly/modules/org/postgres/main
+3. W tym samym katalogu dodać definicję modułu (module.xml)
+
+<module xmlns="urn:jboss:module:1.1" name="org.postgres">
+    <resources>
+        <resource-root path="postgresql-42.0.0.jar"/>
+    </resources>
+    <dependencies>
+        <module name="javax.api"/>
+        <module name="javax.transaction.api"/>
+        <module name="javax.servlet.api" optional="true"/>
+    </dependencies>
+</module>
+
+4. Podnieść server w trybie full
+
+./standalone.sh -c standalone-full.xml
+
+5. Podpiąć się do CLI
+
+./jboss-cli.sh
+connect
+
+6. Zarejestrować sterownik
+
+/subsystem=datasources/jdbc-driver=postgres:add(driver-name="postgres",driver-module-name="org.postgres",driver-class-name=org.postgresql.Driver)
+
+7. Utworzy pulę połączeń (wstawić własnego użytkownika i hasło)
+
+data-source add --jndi-name=java:/BankDS --name=BankDS --connection-url=jdbc:postgresql://localhost/bank --driver-name=postgres --user-name=postgres --password=postgres
+
+/subsystem=datasources/data-source=BankDS:test-connection-in-pool
+
+8. Utworzyć kolejkę i temat  jms
+
+/subsystem=messaging-activemq/server=default/jms-queue=BankDS:add(entries=[java:jboss/exported/jms/queue/Bank])
+/subsystem=messaging-activemq/server=default/jms-topic=BankDS:add(entries=[java:jboss/exported/jms/topic/Bank])
+
+9. Wyłączyć security na poziomie jms
+
+/subsystem=messaging-activemq/server=default:write-attribute(name=security-enabled,value=false)
+
+10. Przeładować konfigurację
+
+reload
+
+

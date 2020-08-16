@@ -1,0 +1,17 @@
+POST http://localhost:8080/bank/api/v1/accounts
+Accept: application/json
+
+###
+
+GET http://localhost:8080/bank/api/v1/accounts/1
+Accept: application/binary-data
+
+###
+
+POST http://localhost:8080/bank/api/v1/dispositions
+Accept: application/json
+Content-Type: application/json
+
+{"funds": 100, "operationName": "DEPOSIT", "accountNumber": "00000000000000000000000001"}
+
+###
