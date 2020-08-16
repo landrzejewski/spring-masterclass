@@ -37,7 +37,7 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
-    @Scheduled(cron = "*/10 * * * * *")
+    //@Scheduled(cron = "*/10 * * * * *")
     public void printSummary() {
         log.log(Level.INFO, "Placed orders: " + orderRepository.count());
     }
