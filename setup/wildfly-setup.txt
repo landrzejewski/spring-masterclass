@@ -31,7 +31,7 @@ connect
 
 7. Utworzy pulę połączeń (wstawić własnego użytkownika i hasło)
 
-data-source add --jndi-name=java:/BankDS --name=BankDS --connection-url=jdbc:postgresql://localhost/bank --driver-name=postgres --user-name=postgres --password=postgres
+data-source add --jndi-name=java:/BankDS --name=BankDS --connection-url=jdbc:postgresql://localhost/bank --driver-name=postgres --user-name=admin --password=admin
 
 /subsystem=datasources/data-source=BankDS:test-connection-in-pool
 
