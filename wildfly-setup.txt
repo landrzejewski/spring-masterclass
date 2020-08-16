@@ -7,7 +7,7 @@
 
 <module xmlns="urn:jboss:module:1.1" name="org.postgres">
     <resources>
-        <resource-root path="postgresql-42.0.0.jar"/>
+        <resource-root path="postgresql-42.2.14.jar"/>
     </resources>
     <dependencies>
         <module name="javax.api"/>
