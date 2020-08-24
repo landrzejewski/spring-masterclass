@@ -35,7 +35,7 @@ public class UserRestControllerTest {
 
     @BeforeEach
     void setUp() {
-        user.setId(1L);
+        user.setId(USER_ID);
         user.setFirstName("Jan");
         user.setLastName("Kowalski");
         user.setEmail("jan.kowalski@training.pl");
