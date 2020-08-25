@@ -2,14 +2,14 @@ package pl.training.shop.orders;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.mail.javamail.JavaMailSender;
+import pl.training.shop.mails.MailService;
 
 @Configuration
 public class OrdersConfiguration {
 
     @Bean
-    public OrderService orderService(OrderRepository orderRepository, JavaMailSender mailSender) {
-        return new OrderService(orderRepository, mailSender);
+    public OrderService orderService(OrderRepository orderRepository, MailService mailService) {
+        return new OrderService(orderRepository, mailService);
     }
 
 }
