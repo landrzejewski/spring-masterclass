@@ -30,5 +30,9 @@ spring:
       auth: true
       starttls.enable: true
       ssl.trust: smtp.gmail.com
+  thymeleaf:
+    enabled: false
 apiPrefix: api
 emailSender: shop@training.pl
+availableLanguages: pl
+defaultLanguage: pl
