@@ -11,9 +11,10 @@ Podpiąć się do CLI
 ./jboss-cli.sh
 connect
 
-Utworzyć kolejkę jms
+Utworzyć kolejki jms
 
 /subsystem=messaging-activemq/server=default/jms-queue=ShopDS:add(entries=[java:jboss/exported/jms/queue/Shop])
+/subsystem=messaging-activemq/server=default/jms-queue=MailDS:add(entries=[java:jboss/exported/jms/queue/Mail])
 
 Wyłączyć security na poziomie jms
 

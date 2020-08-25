@@ -4,8 +4,12 @@ Content-Type: application/json
 {
   "firstName": "Jan",
   "lastName": "Kowalski",
-  "emailAddress": "jan.kowalski@trainig.pl"
+  "emailAddress": "landrzejewski.poczta@gmail.com"
 }
+
+###
+
+GET http://localhost:8080/shop-0.0.1-SNAPSHOT/api/users/not-active/1?token=bae6f440-ae2a-4a2c-bd36-9fb8572f02ea
 
 ###
 

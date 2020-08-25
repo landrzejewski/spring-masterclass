@@ -32,6 +32,14 @@ public class UserRestController {
         return ResponseEntity.created(locationUri).build();
     }
 
+    // Ten endpoint powinien być wołany z poziomu frontu i powinien reagować na metodę PATCH lub POST
+    // GET wynika z tego że pomijamy UI i aktywujemy konto bezpośrednio z wiadomości email (wysłany link)
+    @RequestMapping(value = "/not-active/{userId}", method = RequestMethod.GET)
+    public ResponseEntity<Void> activateUser(@PathVariable Long userId, @RequestParam(name = "token") String tokenValue) {
+        userService.activateUser(userId, tokenValue);
+        return ResponseEntity.noContent().build();
+    }
+
     @GetMapping("{id}")
     public ResponseEntity<UserTransferObject> getUser(@PathVariable Long id) {
         var user = userService.getById(id);
