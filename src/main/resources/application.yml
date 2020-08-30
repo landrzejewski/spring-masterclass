@@ -5,17 +5,23 @@ keycloak:
   auth-server-url: http://localhost:8000/auth
   resource: products-backend
   public-client: true
-  securityConstraints:
-    - authRoles:
-        - admin
-      securityCollections:
-        - name: Secured resource
-          patterns:
-            - /manage-products.html
-            - /api/products/*
-    - securityCollections:
-        - name: Public resource
-          patterns:
-            - /api/products/*
-          methods:
-            - GET
+  principal-attribute: preferred_username
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+
+#  securityConstraints:
+#    - authRoles:
+#        - admin
+#      securityCollections:
+#        - name: Secured resource
+#          patterns:
+#            - /manage-products.html
+#            - /api/products/*
+#    - securityCollections:
+#        - name: Public resource
+#          patterns:
+#            - /api/products/*
+#          methods:
+#            - GET
