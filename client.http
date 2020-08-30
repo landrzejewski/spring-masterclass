@@ -1,77 +1,34 @@
-POST http://localhost:8080/shop-0.0.1-SNAPSHOT/api/users
-Content-Type: application/json
-
-{
-  "firstName": "Jan",
-  "lastName": "Kowalski",
-  "emailAddress": "landrzejewski.poczta@gmail.com"
-}
-
-###
-
-GET http://localhost:8080/shop-0.0.1-SNAPSHOT/api/users/not-active/1?token=bae6f440-ae2a-4a2c-bd36-9fb8572f02ea
-
-###
-
-GET http://localhost:8080/shop-0.0.1-SNAPSHOT/api/users/1
+// @no-cookie-jar
+POST http://localhost:8080/api/products
 Accept: application/json
-
-###
-
-GET http://localhost:8080/shop-0.0.1-SNAPSHOT/api/users?lastNameFragment=Kow
-Accept: application/json
-
-###
-
-POST http://localhost:8080/shop-0.0.1-SNAPSHOT/api/products
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJENC1XQURGTUczVjBoc3dWVWtZT0ZMTUdTcy05WVdOckhlcWFMcnB5Q3ZNIn0.eyJleHAiOjE1ODg2NzQ5NjUsImlhdCI6MTU4ODY3NDY2NSwianRpIjoiNzg5MzFhNzktZjM0MC00Mjg1LTgwNzctMDJkOTdhMDJlNjkzIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDAwL2F1dGgvcmVhbG1zL3RyYWluaW5nIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6ImMxNzA5Y2VjLWI3ZjItNDBjYS05NTU0LTE1MDk5ZTM2M2EzOCIsInR5cCI6IkJlYXJlciIsImF6cCI6InByb2R1Y3RzLWJhY2tlbmQiLCJzZXNzaW9uX3N0YXRlIjoiM2IwMzg2ZjYtODc2Mi00OWRmLWI4OGQtMTg4YjczZmMzMTU4IiwiYWNyIjoiMSIsImFsbG93ZWQtb3JpZ2lucyI6WyJodHRwOi8vbG9jYWxob3N0OjgwODAiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwiYWRtaW4iLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoicHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJlbXBsb3llZSJ9.Z2gg5-ijOxgwhXhi6DTyeaCG4M-2_6pkGsyt-5bVGW1yp2SshmnHhoy8kYV1ZbuV_yY6zW99_U6WqoVpEqU6AF4kN-zlKdEjZBM_59gPQuUN_1j-ODg3OtQsEOSuIzqj8rTeIRCXxfdFxQfMO6W8Qj8GUWVYjE4cTjEg0wpubCDdVBfn6w8TqDdEAr_WeCyMhAuc2UgjOuwgd5sNzaGFTfQvX_7Kv7u2oRrtxqU2u-kIcumKM9PTrGEgCaQOCeGOsn8yhVNIWilVySbO9ZeQj2cJAOVN1YVWcdfJlCEkTb6oGJOS87dJo3aRvq5BgyXcMuKheqR4ZODyiohKB5Gfgg
 
 {
   "name": "Microservices in practice (e-book)",
   "description": "Book",
-  "price": "100.99 PLN",
-  "type": "EBOOK"
+  "price": 200
 }
 
 ###
 
-POST http://localhost:8080/shop-0.0.1-SNAPSHOT/api/orders
+// @no-cookie-jar
+GET http://localhost:8080/api/products?nameFragment=Micro
+Accept: application/json
 Content-Type: application/json
 
-{
-  "products": [
-    {
-      "id": 1
-    }
-  ]
-}
-
 ###
 
-GET http://localhost:8080/shop-0.0.1-SNAPSHOT/api/products
+POST http://localhost:8000/auth/realms/training/protocol/openid-connect/token
 Accept: application/json
+Content-Type: application/x-www-form-urlencoded
+
+client_id=products-backend&username=employee&password=123&grant_type=password
 
 ###
 
-POST http://localhost:8080/shop-0.0.1-SNAPSHOT/api/products/1/files
-Content-Type: multipart/form-data; boundary=WebAppBoundary
-
---WebAppBoundary
-Content-Disposition: form-data; name="file"; filename="pom.xml"
-
-< ./pom.xml
---WebAppBoundary--
-
-###
-
-GET http://localhost:8080/shop-0.0.1-SNAPSHOT/api/exchange-rate?value=100%20PLN
+POST http://localhost:8000/auth/realms/training/protocol/openid-connect/token
 Accept: application/json
+Content-Type: application/x-www-form-urlencoded
 
-###
-
-POST http://localhost:8080/shop-0.0.1-SNAPSHOT/api/messages
-Content-Type: text/plain
-
-Hello
-
-###
+client_id=products-backend&grant_type=refresh_token&refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI4NjRjNzNiMS0zMDQ4LTQwMWMtYmFkNi1jZDk1Njc2ODQyNjgifQ.eyJleHAiOjE1ODg1ODk1NzIsImlhdCI6MTU4ODU4Nzc3MiwianRpIjoiZDgyNDRiNWItNTMwMi00MTc1LTlhYjEtODgxYzlmY2EzYTllIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDAwL2F1dGgvcmVhbG1zL3RyYWluaW5nIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo4MDAwL2F1dGgvcmVhbG1zL3RyYWluaW5nIiwic3ViIjoiYzE3MDljZWMtYjdmMi00MGNhLTk1NTQtMTUwOTllMzYzYTM4IiwidHlwIjoiUmVmcmVzaCIsImF6cCI6InByb2R1Y3RzLWJhY2tlbmQiLCJzZXNzaW9uX3N0YXRlIjoiMjg4MTg2YTktOWE4YS00ZmY1LWJmMzAtNjQ1ZGVlNDA4MTBlIiwic2NvcGUiOiJwcm9maWxlIGVtYWlsIn0.zJk5aKhypww6yIiJgeABUF_DtfdZSdLIjbC-5zn29EY
