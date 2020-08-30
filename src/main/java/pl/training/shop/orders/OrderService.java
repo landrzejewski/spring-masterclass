@@ -35,7 +35,7 @@ public class OrderService {
                 .money(order.getTotalPrice())
                 .build());
         mailService.send(MailMessage.builder()
-                .recipient("landrzejewski.poczta@gmail.com")
+                .recipient("xxx")
                 .subject("New order")
                 .text("New order has been placed")
                 .build());
