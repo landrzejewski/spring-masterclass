@@ -35,11 +35,7 @@ public class MailService {
     @SneakyThrows
     public void onMessage(MailMessage message) {
         MimeMessagePreparator messagePreparator = createMimeMessagePreparator(message);
-        try {
-            mailSender.send(messagePreparator);
-        } catch (MailException exception) {
-            log.warning("Unable to send email: " + exception.getMessage());
-        }
+        mailSender.send(messagePreparator);
     }
 
     private MimeMessagePreparator createMimeMessagePreparator(MailMessage message) {
