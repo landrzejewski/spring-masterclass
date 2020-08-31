@@ -33,7 +33,7 @@ public class MailService {
     @JmsListener(destination = "MailDS")
     @SneakyThrows
     public void onMessage(MailMessage message) {
-        MimeMessagePreparator messagePreparator = createMimeMessagePreparator(message);
+        var messagePreparator = createMimeMessagePreparator(message);
         mailSender.send(messagePreparator);
     }
 

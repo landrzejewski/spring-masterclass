@@ -16,8 +16,7 @@ public class MailsConfiguration {
 
     @Bean
     public Queue mailQueue() throws NamingException {
-        JndiTemplate jndiTemplate = new JndiTemplate();
-        return jndiTemplate.lookup("jboss/exported/jms/queue/Mail", Queue.class);
+        return new JndiTemplate().lookup("jboss/exported/jms/queue/Mail", Queue.class);
     }
 
     @Bean

@@ -34,8 +34,8 @@ public class UserService {
     private String defaultLanguage;
 
     public User add(User user) {
-        User savedUser = usersRepository.save(user);
-        MailMessage mailMessage = prepareConfirmationEmail(savedUser, ACTIVATION_EMAIL_TEMPLATE);
+        var savedUser = usersRepository.save(user);
+        var mailMessage = prepareConfirmationEmail(savedUser, ACTIVATION_EMAIL_TEMPLATE);
         mailService.send(mailMessage);
         return savedUser;
     }
@@ -45,11 +45,11 @@ public class UserService {
     }
 
     private void updateAccount(Consumer<User> updater, Long userId, String tokenValue) {
-        Token token = tokenService.getToken(tokenValue);
+        var token = tokenService.getToken(tokenValue);
         if (!userId.equals(token.getOwnerId())) {
             throw new IllegalStateException();
         }
-        User user = getById(token.getOwnerId());
+        var user = getById(token.getOwnerId());
         updater.accept(user);
         usersRepository.saveAndFlush(user);
         tokenService.deleteToken(token);

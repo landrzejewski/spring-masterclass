@@ -26,7 +26,7 @@ public class TextSource {
     private List<String> availableLanguages;
 
     public String getText(String key, String language) {
-        Locale locale = language != null ? new Locale(language) : Locale.getDefault();
+        var locale = language != null ? new Locale(language) : Locale.getDefault();
         return messageSource.getMessage(key, null, locale);
     }
 
@@ -35,13 +35,13 @@ public class TextSource {
     }
 
     private String buildFromTemplate(String templateBaseName, Map<String, Object> variables, String language) {
-        Context context = createContext(variables);
-        String templateName = getTemplateName(templateBaseName, language);
+        var context = createContext(variables);
+        var templateName = getTemplateName(templateBaseName, language);
         return templateEngine.process(templateName, context);
     }
 
     private Context createContext(Map<String, Object> variables) {
-        Context context = new Context();
+        var context = new Context();
         context.setVariables(variables);
         return context;
     }

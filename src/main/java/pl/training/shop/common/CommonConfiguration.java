@@ -49,7 +49,7 @@ public class CommonConfiguration {
 
     @Bean
     public DefaultJmsListenerContainerFactory defaultJmsListenerContainerFactory(ConnectionFactory connectionFactory) {
-        DefaultJmsListenerContainerFactory defaultJmsListenerContainerFactory = new DefaultJmsListenerContainerFactory();
+        var defaultJmsListenerContainerFactory = new DefaultJmsListenerContainerFactory();
         defaultJmsListenerContainerFactory.setConnectionFactory(connectionFactory);
         defaultJmsListenerContainerFactory.setConcurrency("5-10");
         return defaultJmsListenerContainerFactory;
@@ -57,13 +57,12 @@ public class CommonConfiguration {
 
     @Bean
     public ConnectionFactory connectionFactory() throws NamingException {
-        JndiTemplate jndiTemplate = new JndiTemplate();
-        return jndiTemplate.lookup("java:/ConnectionFactory", ConnectionFactory.class);
+        return new JndiTemplate().lookup("java:/ConnectionFactory", ConnectionFactory.class);
     }
 
     @Bean
     public JmsTemplate jmsTemplate(ConnectionFactory connectionFactory) {
-        CachingConnectionFactory cachingConnectionFactory = new CachingConnectionFactory(connectionFactory);
+        var cachingConnectionFactory = new CachingConnectionFactory(connectionFactory);
         return new JmsTemplate(cachingConnectionFactory);
     }
 
