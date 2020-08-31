@@ -20,7 +20,7 @@ public class MessageService implements MessageListener {
     @SneakyThrows
     @Override
     public void onMessage(Message message) {
-        String text = message.getBody(String.class);
+        var text = message.getBody(String.class);
         log.info("Processing new message: " + text);
     }
 
