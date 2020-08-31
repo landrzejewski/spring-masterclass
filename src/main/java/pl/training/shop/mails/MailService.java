@@ -39,7 +39,7 @@ public class MailService {
 
     private MimeMessagePreparator createMimeMessagePreparator(MailMessage message) {
         return mimeMessage -> {
-            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
+            var messageHelper = new MimeMessageHelper(mimeMessage);
             messageHelper.setFrom(sender);
             messageHelper.setTo(message.getRecipient());
             messageHelper.setSubject(message.getSubject());
