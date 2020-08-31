@@ -7,7 +7,6 @@ import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
@@ -35,11 +34,7 @@ public class MailService {
     @SneakyThrows
     public void onMessage(MailMessage message) {
         MimeMessagePreparator messagePreparator = createMimeMessagePreparator(message);
-        try {
-            mailSender.send(messagePreparator);
-        } catch (MailException exception) {
-            log.warning("Unable to send email: " + exception.getMessage());
-        }
+        mailSender.send(messagePreparator);
     }
 
     private MimeMessagePreparator createMimeMessagePreparator(MailMessage message) {
