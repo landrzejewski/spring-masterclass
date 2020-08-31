@@ -33,13 +33,13 @@ public class MailService {
     @JmsListener(destination = "MailDS")
     @SneakyThrows
     public void onMessage(MailMessage message) {
-        MimeMessagePreparator messagePreparator = createMimeMessagePreparator(message);
+        var messagePreparator = createMimeMessagePreparator(message);
         mailSender.send(messagePreparator);
     }
 
     private MimeMessagePreparator createMimeMessagePreparator(MailMessage message) {
         return mimeMessage -> {
-            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
+            var messageHelper = new MimeMessageHelper(mimeMessage);
             messageHelper.setFrom(sender);
             messageHelper.setTo(message.getRecipient());
             messageHelper.setSubject(message.getSubject());

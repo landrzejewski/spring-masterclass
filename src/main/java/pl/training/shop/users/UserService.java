@@ -9,7 +9,6 @@ import pl.training.shop.common.PagedResult;
 import pl.training.shop.common.TextSource;
 import pl.training.shop.mails.MailMessage;
 import pl.training.shop.mails.MailService;
-import pl.training.shop.tokens.Token;
 import pl.training.shop.tokens.TokenService;
 
 import java.util.Map;
@@ -34,8 +33,8 @@ public class UserService {
     private String defaultLanguage;
 
     public User add(User user) {
-        User savedUser = usersRepository.save(user);
-        MailMessage mailMessage = prepareConfirmationEmail(savedUser, ACTIVATION_EMAIL_TEMPLATE);
+        var savedUser = usersRepository.save(user);
+        var mailMessage = prepareConfirmationEmail(savedUser, ACTIVATION_EMAIL_TEMPLATE);
         mailService.send(mailMessage);
         return savedUser;
     }
@@ -45,11 +44,11 @@ public class UserService {
     }
 
     private void updateAccount(Consumer<User> updater, Long userId, String tokenValue) {
-        Token token = tokenService.getToken(tokenValue);
+        var token = tokenService.getToken(tokenValue);
         if (!userId.equals(token.getOwnerId())) {
             throw new IllegalStateException();
         }
-        User user = getById(token.getOwnerId());
+        var user = getById(token.getOwnerId());
         updater.accept(user);
         usersRepository.saveAndFlush(user);
         tokenService.deleteToken(token);
@@ -71,7 +70,7 @@ public class UserService {
     }
 
     private MailMessage prepareConfirmationEmail(User user, String templateName) {
-        Token token = tokenService.createToken(user.getId());
+        var token = tokenService.createToken(user.getId());
         Map<String, Object> variables = Map.of(TOKEN_KEY, token.getValue(), USER_ID_KEY, user.getId());
         String subject = textSource.getText(SUBJECT_KEY, defaultLanguage);
         String text = textSource.getTextFromTemplate(templateName, variables, defaultLanguage);

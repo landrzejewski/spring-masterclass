@@ -14,8 +14,7 @@ public class LegacyConfiguration {
 
     @Bean
     public Queue messagesQueue() throws NamingException {
-        JndiTemplate jndiTemplate = new JndiTemplate();
-        return jndiTemplate.lookup("jboss/exported/jms/queue/Shop", Queue.class);
+        return new JndiTemplate().lookup("jboss/exported/jms/queue/Shop", Queue.class);
     }
 
     @Bean

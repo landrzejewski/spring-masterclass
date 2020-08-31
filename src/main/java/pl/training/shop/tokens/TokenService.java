@@ -12,8 +12,8 @@ public class TokenService {
     private final TokenRepository tokenRepository;
 
     public Token createToken(Long ownerId) {
-        String tokenValue = UUID.randomUUID().toString();
-        Token token = new Token(tokenValue, ownerId);
+        var tokenValue = UUID.randomUUID().toString();
+        var token = new Token(tokenValue, ownerId);
         return tokenRepository.saveAndFlush(token);
     }
 
