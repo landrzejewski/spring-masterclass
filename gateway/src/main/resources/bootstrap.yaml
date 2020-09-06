@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    config:
+      uri: http://localhost:8888 # default value
+      label: 053-Moduł-12-Spring-Cloud

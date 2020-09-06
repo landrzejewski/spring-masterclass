@@ -1,0 +1,2 @@
+zuul:
+  prefix: /api/v1

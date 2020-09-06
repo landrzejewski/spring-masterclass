@@ -1,0 +1,7 @@
+spring:
+  jackson:
+    default-property-inclusion: non_null
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8089/eureka/
