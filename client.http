@@ -1,7 +1,10 @@
 POST {{baseUrl}}/users
 Content-Type: application/json
 
-{"firstName": "Jan", "lastName": "Kowalski"}
+{
+  "firstName": "Jan",
+  "lastName": "Kowalski"
+}
 
 ###
 
@@ -10,14 +13,49 @@ Accept: application/json
 
 ###
 
-POST {{baseUrl}}/api/v1/authentication/users
+POST {{baseUrl}}/api/v1/authentication-service/users
 Content-Type: application/json
 
-{"firstName": "Jan", "lastName": "Kowalski"}
+{
+  "firstName": "Jan",
+  "lastName": "Kowalski"
+}
 
 ###
 
-GET {{baseUrl}}/api/v1/authentication/users/2
+GET {{baseUrl}}/api/v1/authentication-service/users/2
 Accept: application/json
+
+###
+
+POST {{baseUrl}}/api/v1/trips-service/drivers/2/trips
+Accept: application/json
+
+
+###
+
+PUT {{baseUrl}}/api/v1/trips-service/trips/3
+Accept: application/json
+
+###
+
+POST {{baseUrl}}/api/v1/payments-service/payments
+Content-Type: application/json
+
+{
+  "amount": 1000,
+  "card": {
+    "number": "123456789",
+    "cvv": "543",
+    "expirationDate": "2019-12-10T10:51:18.539146"
+  }
+}
+
+###
+
+POST http://localhost:8888/monitor
+Content-Type: application/x-www-form-urlencoded
+
+path=trips-service
 
 ###

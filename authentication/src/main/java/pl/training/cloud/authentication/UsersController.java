@@ -13,7 +13,8 @@ public class UsersController {
 
     private final UsersService usersService;
     private final UserMapper userMapper;
-    private final UriBuilder uriBuilder = new UriBuilder();
+
+    private UriBuilder uriBuilder = new UriBuilder();
 
     @PostMapping
     public ResponseEntity<Void> addUser(@RequestBody UserDto userDto) {

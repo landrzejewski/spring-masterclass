@@ -1,6 +1,6 @@
 spring:
   application:
-    name: authentication-service
+    name: payments-service
   cloud:
     config:
       uri: http://localhost:8888 # default value

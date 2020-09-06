@@ -13,6 +13,9 @@
 
     <modules>
         <module>authentication</module>
+        <module>trips</module>
+        <module>payments-api</module>
+        <module>payments</module>
         <module>configuration</module>
         <module>discovery</module>
         <module>gateway</module>

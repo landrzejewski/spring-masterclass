@@ -1,0 +1,9 @@
+server:
+  port: 8002
+spring:
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: payments-topic
+          content-type: application/json
