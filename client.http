@@ -1,4 +1,4 @@
-POST http://localhost:8080/shop-0.0.1-SNAPSHOT/api/users
+POST http://localhost:8080/api/users
 Content-Type: application/json
 
 {
@@ -9,21 +9,21 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:8080/shop-0.0.1-SNAPSHOT/api/users/not-active/1?token=bae6f440-ae2a-4a2c-bd36-9fb8572f02ea
+GET http://localhost:8080/api/users/not-active/1?token=bae6f440-ae2a-4a2c-bd36-9fb8572f02ea
 
 ###
 
-GET http://localhost:8080/shop-0.0.1-SNAPSHOT/api/users/1
+GET http://localhost:8080/api/users/1
 Accept: application/json
 
 ###
 
-GET http://localhost:8080/shop-0.0.1-SNAPSHOT/api/users?lastNameFragment=Kow
+GET http://localhost:8080/api/users?lastNameFragment=Kow
 Accept: application/json
 
 ###
 
-POST http://localhost:8080/shop-0.0.1-SNAPSHOT/api/products
+POST http://localhost:8080/api/products
 Content-Type: application/json
 
 {
@@ -35,7 +35,7 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:8080/shop-0.0.1-SNAPSHOT/api/orders
+POST http://localhost:8080/api/orders
 Content-Type: application/json
 
 {
@@ -48,12 +48,12 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:8080/shop-0.0.1-SNAPSHOT/api/products
+GET http://localhost:8080/api/products
 Accept: application/json
 
 ###
 
-POST http://localhost:8080/shop-0.0.1-SNAPSHOT/api/products/1/files
+POST http://localhost:8080/api/products/1/files
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 
 --WebAppBoundary
@@ -64,12 +64,12 @@ Content-Disposition: form-data; name="file"; filename="pom.xml"
 
 ###
 
-GET http://localhost:8080/shop-0.0.1-SNAPSHOT/api/exchange-rate?value=100%20PLN
+GET http://localhost:8080/api/exchange-rate?value=100%20PLN
 Accept: application/json
 
 ###
 
-POST http://localhost:8080/shop-0.0.1-SNAPSHOT/api/messages
+POST http://localhost:8080/api/messages
 Content-Type: text/plain
 
 Hello

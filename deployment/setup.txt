@@ -1,0 +1,38 @@
+1. User setup
+adduser fullstackdev
+usermod -aG sudo fullstackdev
+
+2. SSH configuration (nano /etc/ssh/sshd_config)
+#PermitRootLogin yes
+
+3. Docker
+sudo apt-get install \
+     apt-transport-https \
+     ca-certificates \
+     curl \
+     gnupg2 \
+     software-properties-common
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/debian \
+   $(lsb_release -cs) \
+   stable"
+sudo apt-get update
+sudo apt-get install docker-ce
+sudo usermod -aG docker $USER
+sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+4. Firewall
+sudo apt install ufw
+sudo ufw default deny incoming
+sudo ufw allow ssh
+sudo ufw allow http https
+sudo ufw status
+sudo ufw enable
+
+5. Certbot / SSL
+sudo apt-get install certbot python-certbot-apache
+sudo certbot certonly --standalone --preferred-challenges http -d fullstack-developer.io
+sudo cat /etc/letsencrypt/live/fullstack-developer.io/fullchain.pem > ~/cert.pem
+sudo cat /etc/letsencrypt/live/fullstack-developer.io/privkey.pem > ~/key.pem

@@ -4,33 +4,31 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.SneakyThrows;
 import lombok.extern.java.Log;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.jms.annotation.JmsListener;
-import org.springframework.jms.core.JmsTemplate;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
-
-import javax.jms.Queue;
 
 @Log
 @RequiredArgsConstructor
 public class MailService {
 
     private final JavaMailSender mailSender;
-    private final JmsTemplate jmsTemplate;
-    private final Queue mailQueue;
+    private final RabbitTemplate jmsTemplate;
+    private final Queue sendEmailQueue;
 
     @Value("${email-sender}")
     @Setter
     private String sender;
 
-    @SneakyThrows
     public void send(MailMessage mailMessage) {
-        jmsTemplate.convertAndSend(mailQueue.getQueueName(), mailMessage);
+        jmsTemplate.convertAndSend(sendEmailQueue.getName(), mailMessage);
     }
 
-    @JmsListener(destination = "MailDS")
+    @RabbitListener(queues = "${send-email-queue}")
     @SneakyThrows
     public void onMessage(MailMessage message) {
         var messagePreparator = createMimeMessagePreparator(message);

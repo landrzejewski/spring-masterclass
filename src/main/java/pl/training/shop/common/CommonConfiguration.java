@@ -1,25 +1,30 @@
 package pl.training.shop.common;
 
+import org.springframework.amqp.rabbit.annotation.EnableRabbit;
+import org.springframework.amqp.rabbit.annotation.RabbitListenerConfigurer;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.rabbit.listener.RabbitListenerEndpointRegistrar;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
-import org.springframework.jms.connection.CachingConnectionFactory;
-import org.springframework.jms.core.JmsTemplate;
-import org.springframework.jndi.JndiTemplate;
+import org.springframework.messaging.converter.MappingJackson2MessageConverter;
+import org.springframework.messaging.handler.annotation.support.DefaultMessageHandlerMethodFactory;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import pl.training.shop.common.profiler.Profiler;
 import pl.training.shop.common.retry.MethodExecutor;
 import pl.training.shop.common.validator.ModelValidator;
 import pl.training.shop.common.validator.ValidatorService;
-import pl.training.shop.legacy.JmsSender;
 
-import javax.jms.ConnectionFactory;
-import javax.jms.Queue;
-import javax.naming.NamingException;
 import javax.validation.Validator;
 
+@EnableRabbit
 @Configuration
-public class CommonConfiguration {
+public class CommonConfiguration implements RabbitListenerConfigurer {
+
+    @Autowired
+    private DefaultMessageHandlerMethodFactory messageHandlerMethodFactory;
 
     @Bean
     public Profiler profiler() {
@@ -46,29 +51,33 @@ public class CommonConfiguration {
         return new MethodExecutor();
     }
 
-
-    @Bean
-    public DefaultJmsListenerContainerFactory defaultJmsListenerContainerFactory(ConnectionFactory connectionFactory) {
-        var defaultJmsListenerContainerFactory = new DefaultJmsListenerContainerFactory();
-        defaultJmsListenerContainerFactory.setConnectionFactory(connectionFactory);
-        defaultJmsListenerContainerFactory.setConcurrency("5-10");
-        return defaultJmsListenerContainerFactory;
+    @Override
+    public void configureRabbitListeners(RabbitListenerEndpointRegistrar registrar) {
+        registrar.setMessageHandlerMethodFactory(messageHandlerMethodFactory);
     }
 
     @Bean
-    public ConnectionFactory connectionFactory() throws NamingException {
-        return new JndiTemplate().lookup("java:/ConnectionFactory", ConnectionFactory.class);
+    public DefaultMessageHandlerMethodFactory messageHandlerMethodFactory(MappingJackson2MessageConverter consumerMessageConverter) {
+        DefaultMessageHandlerMethodFactory factory = new DefaultMessageHandlerMethodFactory();
+        factory.setMessageConverter(consumerMessageConverter);
+        return factory;
     }
 
     @Bean
-    public JmsTemplate jmsTemplate(ConnectionFactory connectionFactory) {
-        var cachingConnectionFactory = new CachingConnectionFactory(connectionFactory);
-        return new JmsTemplate(cachingConnectionFactory);
+    public MappingJackson2MessageConverter consumerMessageConverter() {
+        return new MappingJackson2MessageConverter();
     }
 
     @Bean
-    public JmsSender messageSender(JmsTemplate jmsTemplate, Queue messagesQueue) {
-        return new JmsSender(jmsTemplate, messagesQueue);
+    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory, Jackson2JsonMessageConverter producerMessageConverter) {
+        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
+        rabbitTemplate.setMessageConverter(producerMessageConverter);
+        return rabbitTemplate;
+    }
+
+    @Bean
+    public Jackson2JsonMessageConverter producerMessageConverter() {
+        return new Jackson2JsonMessageConverter();
     }
 
 }

@@ -1,5 +1,7 @@
 package pl.training.shop;
 
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,6 +27,10 @@ import java.util.List;
 @Configuration
 public class MvcConfiguration implements WebMvcConfigurer {
 
+    @Value("${allowed-origin}")
+    @Setter
+    private String allowedOrigin;
+
     @Bean
     public Docket docket() {
         return new Docket(DocumentationType.SWAGGER_2)
@@ -38,7 +44,7 @@ public class MvcConfiguration implements WebMvcConfigurer {
         registry.addMapping("/api/**")
                 .allowedMethods("*")
                 .allowedHeaders("*")
-                .allowedOrigins("http://localhost:4200");
+                .allowedOrigins(allowedOrigin);
     }
 
     @Override

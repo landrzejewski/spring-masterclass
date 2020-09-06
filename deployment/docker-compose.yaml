@@ -1,0 +1,40 @@
+version: '3'
+services:
+  database:
+    image: postgres:12-alpine
+    environment:
+      - POSTGRES_DB=shop
+      - POSTGRES_USER=shop
+      - POSTGRES_PASSWORD=J98xHw4zYrf4Ykwa
+      - PGDATA=/var/lib/postgresql/data/application
+    volumes:
+      - ./data/database:/var/lib/postgresql/data/application
+  message-broker:
+    image: rabbitmq:3.7-management-alpine
+    environment:
+      - RABBITMQ_DEFAULT_USER=broker
+      - RABBITMQ_DEFAULT_PASS=pxnVHg47DQ95Ctkwa
+    volumes:
+      - ./data/message-broker:/var/lib/rabbitmq/mnesia
+  backend:
+    image: landrzejewski/shop-backend
+    depends_on:
+      - database
+      - message-broker
+    environment:
+      - ACTIVE_PROFILE=production
+  frontend:
+    image: landrzejewski/shop-frontend
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend/configuration:/etc/nginx/conf.d
+  proxy:
+    image: nginx:1.19.2-alpine
+    depends_on:
+      - frontend
+    ports:
+      - 51.210.7.47:80:80
+      - 51.210.7.47:443:443
+    volumes:
+      - ./proxy/configuration:/etc/nginx/conf.d

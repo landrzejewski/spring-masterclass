@@ -12,12 +12,11 @@ spring:
     view:
       prefix: /WEB-INF/jsp/
       suffix: .jsp
-  h2:
-    console:
-      enabled: true
-      path: /h2
   datasource:
-    url: jdbc:h2:file:~/shop
+    url: jdbc:postgresql://localhost:5432/shop
+    driver-class-name: org.postgresql.Driver
+    username: shop
+    password: J98xHw4zYrf4Ykwa
   messages:
     basename: messages # default value
   mail:
@@ -32,7 +31,31 @@ spring:
       ssl.trust: smtp.gmail.com
   thymeleaf:
     enabled: false
+  rabbitmq:
+    listener:
+      simple:
+        concurrency: 10
+        max-concurrency: 20
+        retry:
+          enabled: true
+    connection-timeout: 0
+    requested-heartbeat: 5
+    username: broker
+    password: pxnVHg47DQ95Ctkwa
 apiPrefix: api
 emailSender: shop@training.pl
 availableLanguages: pl
 defaultLanguage: pl
+send-email-queue: send-email
+allowed-origin: http://locallhost:4200
+---
+spring:
+  profiles: production
+  datasource:
+    url: jdbc:postgresql://database:5432/shop
+  rabbitmq:
+    host: message-broker
+  jpa:
+    hibernate:
+      ddl-auto: update
+allowed-origin: https://fullstack-developer.io
