@@ -28,7 +28,7 @@ public class UserService {
     private final TextSource textSource;
     private final MailService mailService;
 
-    @Value("defaultLanguage}")
+    @Value("${defaultLanguage}")
     @Setter
     private String defaultLanguage;
 
