@@ -10,6 +10,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class ShopApplication {
 
     public static void main(String[] args) {
+        System.out.println("Staring shop...");
         SpringApplication.run(ShopApplication.class, args);
     }
 
