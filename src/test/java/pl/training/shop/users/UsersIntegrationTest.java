@@ -11,6 +11,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 import pl.training.shop.ShopApplication;
 
 import javax.persistence.EntityManager;
@@ -45,9 +46,10 @@ public class UsersIntegrationTest {
         user.setEmail("jan.kowalski@training.pl");
     }
 
+    @Transactional
     @Test
     void shouldReturnUserById() throws Exception {
-        entityManager.persist(user);
+        entityManager.merge(user);
         mockMvc.perform(get("/api/users/1")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
