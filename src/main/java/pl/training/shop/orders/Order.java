@@ -2,6 +2,7 @@ package pl.training.shop.orders;
 
 import lombok.*;
 import org.javamoney.moneta.FastMoney;
+import pl.training.shop.common.BaseEntity;
 import pl.training.shop.payments.LocalMoney;
 import pl.training.shop.payments.Payment;
 import pl.training.shop.products.Product;
@@ -14,15 +15,13 @@ import java.util.List;
 
 @Table(name = "orders")
 @Entity
-@EqualsAndHashCode(exclude = "id")
-@Data
+@Getter
+@Setter
+@ToString
 @RequiredArgsConstructor
 @NoArgsConstructor
-public class Order {
+public class Order extends BaseEntity {
 
-    @GeneratedValue
-    @Id
-    private Long id;
     @ManyToMany(fetch = FetchType.EAGER)
     @NotEmpty
     @NonNull
