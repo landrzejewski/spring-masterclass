@@ -1,17 +1,19 @@
 package pl.training.cloud.authentication;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Table(name = "users")
 @Entity
-@Data
-public class User {
+@Getter
+@Setter
+@ToString
+public class User extends BaseEntity {
 
-    @GeneratedValue
-    @Id
-    private Long id;
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
