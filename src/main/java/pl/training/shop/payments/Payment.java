@@ -4,10 +4,12 @@ import lombok.*;
 import org.hibernate.annotations.Columns;
 import org.hibernate.annotations.TypeDef;
 import org.javamoney.moneta.FastMoney;
+import pl.training.shop.common.BaseEntity;
 import pl.training.shop.common.FastMoneyUserType;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.Objects;
 
 @TypeDef(name = "fastMoney", typeClass = FastMoneyUserType.class, defaultForType = FastMoney.class)
 @Table(name = "payments", indexes = @Index(name = "payment_status", columnList = "status"))
@@ -33,15 +35,15 @@ public class Payment {
     private PaymentStatus status;
 
     @Override
-    public boolean equals(Object otherPayment) {
-        if (this == otherPayment) {
+    public boolean equals(Object otherObject) {
+        if (this == otherObject) {
             return true;
         }
-        if (!(otherPayment instanceof Payment)) {
+        if (getClass() != otherObject.getClass()) {
             return false;
         }
-        Payment other = (Payment) otherPayment;
-        return id != null && id.equals(other.getId());
+        Payment otherEntity = (Payment) otherObject;
+        return this.id != null && Objects.equals(id, otherEntity.id);
     }
 
     @Override

@@ -27,8 +27,8 @@ public abstract class BaseEntity {
         if (getClass() != otherObject.getClass()) {
             return false;
         }
-        BaseEntity that = (BaseEntity) otherObject;
-        return this.id != null && Objects.equals(this.id, that.id);
+        BaseEntity otherEntity = (BaseEntity) otherObject;
+        return this.id != null && Objects.equals(id, otherEntity.id);
     }
 
     @Override
