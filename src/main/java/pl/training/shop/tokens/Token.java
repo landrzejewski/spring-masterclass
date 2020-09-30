@@ -1,6 +1,7 @@
 package pl.training.shop.tokens;
 
 import lombok.*;
+import pl.training.shop.common.BaseEntity;
 
 import javax.persistence.*;
 
@@ -8,15 +9,12 @@ import javax.persistence.*;
         @Index(name = "token_value_index", columnList = "value", unique = true)
 })
 @Entity
-@EqualsAndHashCode(exclude = "id")
-@Data
+@Getter
+@Setter
 @RequiredArgsConstructor
 @NoArgsConstructor
-public class Token {
+public class Token extends BaseEntity {
 
-    @GeneratedValue
-    @Id
-    private Long id;
     @Column(unique = true)
     @NonNull
     private String value;
