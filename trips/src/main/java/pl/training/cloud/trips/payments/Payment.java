@@ -1,22 +1,19 @@
 package pl.training.cloud.trips.payments;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
+import pl.training.cloud.trips.BaseEntity;
 
 import javax.persistence.*;
 
 @Table(name = "paymemts")
 @Entity
-@Data
+@Getter
+@Setter
+@ToString
 @RequiredArgsConstructor
 @NoArgsConstructor
-public class Payment {
+public class Payment extends BaseEntity {
 
-    @GeneratedValue
-    @Id
-    private Long id;
     @NonNull
     @Enumerated(EnumType.STRING)
     private PaymentStatus status;

@@ -1,9 +1,6 @@
 package pl.training.cloud.trips;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import pl.training.cloud.trips.drivers.Driver;
 import pl.training.cloud.trips.payments.Payment;
 
@@ -12,14 +9,13 @@ import java.time.LocalDateTime;
 
 @Table(name = "trips")
 @Entity
-@Data
+@Getter
+@Setter
+@ToString
 @RequiredArgsConstructor
 @NoArgsConstructor
-public class Trip {
+public class Trip extends BaseEntity {
 
-    @GeneratedValue
-    @Id
-    private Long id;
     @Column(name = "start_time")
     @NonNull
     private LocalDateTime startTime;

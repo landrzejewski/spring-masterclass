@@ -1,9 +1,7 @@
 package pl.training.cloud.trips.drivers;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import pl.training.cloud.trips.BaseEntity;
 import pl.training.cloud.trips.payments.Card;
 
 import javax.persistence.*;
@@ -11,14 +9,13 @@ import javax.persistence.*;
 @Table(name = "drivers")
 @Entity
 @Builder
-@Data
+@Getter
+@Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class Driver {
+public class Driver extends BaseEntity {
 
-    @GeneratedValue
-    @Id
-    private Long id;
     private String firstName;
     private String lastName;
     @OneToOne(cascade = CascadeType.ALL)
