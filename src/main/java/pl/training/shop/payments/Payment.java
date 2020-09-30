@@ -13,8 +13,9 @@ import java.time.Instant;
 @Table(name = "payments", indexes = @Index(name = "payment_status", columnList = "status"))
 @Entity
 @Builder
-@EqualsAndHashCode(exclude = "id")
-@Data
+@Getter
+@Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class Payment {
@@ -30,5 +31,22 @@ public class Payment {
     private Instant timestamp;
     @Enumerated(EnumType.STRING)
     private PaymentStatus status;
+
+    @Override
+    public boolean equals(Object otherPayment) {
+        if (this == otherPayment) {
+            return true;
+        }
+        if (!(otherPayment instanceof Payment)) {
+            return false;
+        }
+        Payment other = (Payment) otherPayment;
+        return id != null && id.equals(other.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
 
 }
