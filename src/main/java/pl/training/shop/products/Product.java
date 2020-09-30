@@ -1,16 +1,16 @@
 package pl.training.shop.products;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-@EqualsAndHashCode(exclude = "id")
-@Data
-public class Product {
+@Getter
+@Setter
+@ToString
+public class Product extends BaseEntity {
 
     @GeneratedValue
     @Id
