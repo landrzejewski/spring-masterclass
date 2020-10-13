@@ -69,21 +69,21 @@ public class Application {
         Runtime.getRuntime()
                 .addShutdownHook(new Thread(compositeDisposable::dispose));
 
-        /*compositeDisposable.add(
+        compositeDisposable.add(
                 ObservableReader.from(System.in)
                     .flatMap(this::sendWikipediaQuery)
                     .subscribe(System.out::println, System.out::println, () -> System.out.println("Completed"))
-        );*/
+        );
 
 
-        compositeDisposable.add(
+        /*compositeDisposable.add(
                 ObservableReader.from(System.in)
                         .debounce(5, TimeUnit.SECONDS)
                         .flatMap(query -> Observable.zip(sendWikipediaQuery(query), sendGithubQuery(query), this::combineResults))
                         .flatMap(Observable::fromIterable)
                         .map(String::toLowerCase)
                         .subscribe(System.out::println, System.out::println, () -> System.out.println("Completed"))
-        );
+        );*/
     }
 
 
