@@ -44,7 +44,7 @@ public class Application {
         List<String> newResults = new ArrayList<>();
         newResults.addAll(results);
         newResults.addAll(otherResults);
-        return results;
+        return newResults;
     }
 
     private Observable<List<String>> sendWikipediaQuery(String query) {
