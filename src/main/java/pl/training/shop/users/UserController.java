@@ -16,7 +16,7 @@ public class UserController {
     private UriBuilder uriBuilder = new UriBuilder();
 
     @PostMapping
-    public ResponseEntity<User> addUser(@RequestBody User user) {
+    public ResponseEntity<Void> addUser(@RequestBody User user) {
         var userId = userService.add(user).getId();
         var locationUri = uriBuilder.requestUriWithId(userId);
         return ResponseEntity.created(locationUri).build();
