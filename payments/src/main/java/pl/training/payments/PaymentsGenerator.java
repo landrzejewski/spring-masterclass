@@ -21,6 +21,13 @@ public class PaymentsGenerator {
         return Flux.generate(this::paymentsSink)
                 .zipWith(Flux.interval(period))
                 .map(Tuple2::getT1);
+
+        // Flux.just(createPayment(), createPayment());
+
+        // Flux.interval(period)
+
+        // Flux.generate(this::paymentsSink)
+
     }
 
     private void paymentsSink(SynchronousSink<Payment> sink) {
