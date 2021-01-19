@@ -3,6 +3,7 @@ package pl.training.shop.users;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import pl.training.shop.common.PagedResult;
 import pl.training.shop.common.web.PagedResultTransferObject;
 
@@ -19,5 +20,9 @@ public interface UserMapper {
     List<UserTransferObject> toUserTransferObjects(List<User> users);*/
 
     PagedResultTransferObject<UserTransferObject> toUserTransferObjectsPage(PagedResult<User> usersPage);
+
+    @Mapping(target = "email", ignore = true)
+    @Mapping(target = "id", ignore = true)
+    void updateUser(User user, @MappingTarget User userToUpdate);
 
 }

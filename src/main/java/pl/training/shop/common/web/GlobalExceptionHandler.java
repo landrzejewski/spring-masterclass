@@ -5,15 +5,18 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import pl.training.shop.products.ProductNotFoundException;
 import pl.training.shop.users.UserNotFoundException;
 
+import javax.validation.ConstraintViolationException;
 import java.util.Locale;
 
-import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static java.lang.String.format;
+import static java.util.stream.Collectors.joining;
+import static org.springframework.http.HttpStatus.*;
 
 @ControllerAdvice
 @RequiredArgsConstructor
@@ -25,6 +28,14 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ExceptionTransferObject> onException(Exception ex, Locale locale) {
         ex.printStackTrace();
         return createResponse(ex, INTERNAL_SERVER_ERROR, locale);
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<ExceptionTransferObject> onConstraintViolationException(ConstraintViolationException ex) {
+        var errors = ex.getConstraintViolations().stream()
+                .map(violation -> String.format("%s %s, ", violation.getPropertyPath(), violation.getMessage()))
+                .collect(joining());
+        return ResponseEntity.status(BAD_REQUEST).body(new ExceptionTransferObject(errors));
     }
 
     @ExceptionHandler(UserNotFoundException.class)

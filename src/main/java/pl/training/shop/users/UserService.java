@@ -10,6 +10,7 @@ import pl.training.shop.common.PagedResult;
 public class UserService {
 
     private final UsersRepository usersRepository;
+    private final UserMapper userMapper;
 
     public User add(User user) {
         return usersRepository.save(user);
@@ -18,6 +19,12 @@ public class UserService {
     public User getById(Long id) {
         return usersRepository.findById(id)
                 .orElseThrow(UserNotFoundException::new);
+    }
+
+    public void update(User user) {
+        var userToUpdate = getById(user.getId());
+        userMapper.updateUser(user, userToUpdate);
+        usersRepository.saveAndFlush(userToUpdate);
     }
 
     public PagedResult<User> getByLastName(String lastNameFragment, int pageNumber, int pageSize) {

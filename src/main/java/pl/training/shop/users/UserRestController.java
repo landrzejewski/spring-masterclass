@@ -2,16 +2,20 @@ package pl.training.shop.users;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import pl.training.shop.common.validator.OnCreate;
+import pl.training.shop.common.validator.OnUpdate;
 import pl.training.shop.common.web.PagedResultTransferObject;
 import pl.training.shop.common.web.UriBuilder;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
+@Validated
 @RequestMapping("${apiPrefix}/users")
 @RestController
 @RequiredArgsConstructor
@@ -21,15 +25,22 @@ public class UserRestController {
     private final UserMapper userMapper;
     private final UriBuilder uriBuilder = new UriBuilder();
 
+    @Validated(OnCreate.class)
     @PostMapping
-    public ResponseEntity<UserTransferObject> addUser(@Valid @RequestBody UserTransferObject userTransferObject, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return ResponseEntity.badRequest().build();
-        }
+    public ResponseEntity<UserTransferObject> addUser(@Valid @RequestBody UserTransferObject userTransferObject) {
         var user = userMapper.toUser(userTransferObject);
         var userId = userService.add(user).getId();
         var locationUri = uriBuilder.requestUriWithId(userId);
         return ResponseEntity.created(locationUri).build();
+    }
+
+    @Validated(OnUpdate.class)
+    @PutMapping("{id}")
+    public ResponseEntity<UserTransferObject> updateUser(@PathVariable @Min(1) Long id, @Valid @RequestBody UserTransferObject userTransferObject) {
+        var user = userMapper.toUser(userTransferObject);
+        user.setId(id);
+        userService.update(user);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("{id}")

@@ -9,6 +9,16 @@ Content-Type: application/json
 
 ###
 
+PUT http://localhost:8080/api/users/1
+Content-Type: application/json
+
+{
+  "firstName": "Janek",
+  "lastName": "Kowalski"
+}
+
+###
+
 GET http://localhost:8080/api/users/1
 Accept: application/json
 
