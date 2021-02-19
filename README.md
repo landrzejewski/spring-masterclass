@@ -1,6 +1,6 @@
 ![Kurs Spring](/kurs_spring.png?raw=true)
 
-# [Kup kurs](https://kursy.sages.pl/kursy/spring-framework)
+# [>>> Przejdź do strony kursy <<<](https://kursy.sages.pl/kursy/spring-framework)
 
 # Czego się nauczysz?
 
