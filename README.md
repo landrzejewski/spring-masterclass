@@ -1,4 +1,6 @@
-![Alt text](/kurs_spring.png?raw=true "Kurs Springg")
+![Kurs Spring](/kurs_spring.png?raw=true "Kurs Springg")
+
+![Kup kurs](https://kursy.sages.pl/kursy/spring-framework "Kup kurs")
 
 # Czego się nauczysz?
 
@@ -95,4 +97,4 @@ Kurs podzielony jest na 12 modułów obejmujących kluczowe zagadnienia z zakres
      * Bonus: Wprowadzenie do Spring Cloud
      * Bonus: Wprowadzenie do Kubernetes
     
-![Alt text](/spring_poll.png?raw=true "Opinie")
+![Ankieta](/spring_poll.png?raw=true "Opinie")
