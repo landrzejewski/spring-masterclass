@@ -32,12 +32,12 @@ Kurs podzielony jest na 12 modułów obejmujących kluczowe zagadnienia z zakres
     * Komponenty zarządzane – konfiguracja, wstrzykiwanie, zasięg, cykl życia
     * Programowanie przez zdarzenia
     * Inne istotne elementy
-3. Programowanie aspektowe
+* Programowanie aspektowe
     * Wprowadzenie – koncepcja, możliwości i potencjalne zastosowanie
     * Realizacja AOP na poziomie Spring (dynamic proxies vs. CGLIB)
     * Desygnatory
     * Implementacja i konfiguracja aspektów m.in. typy advice, przechwytywanie argumentów, rezultatów oraz wyjątków z metod
-4. Utrwalanie danych
+* Utrwalanie danych
      * Konfigurowanie połączenia do bazy
      * Transakcje – definicja, parametry (propagacja, reguły wycofywania, poziom izolacji, czas ważności)
      * Menedżer transakcji – sposób działania, dostępne implementacje, konfiguracja, deklaratywne zatwierdzanie / wycofywanie transakcji
@@ -49,35 +49,35 @@ Kurs podzielony jest na 12 modułów obejmujących kluczowe zagadnienia z zakres
      * Praca z repozytoriami – DSL, adnotacje, zapytania przez przykłady, własne implementacje repozytoriów
      * Spring Data w kontekście nierelacyjnych bazy danych
      * Wykorzystanie pamięci podręcznej (cache abstraction)
-5. Usługi REST
+* Usługi REST
      * Założenia architektury REST
      * Tworzenie i konfigurowanie kontrolerów – mapowanie, wstrzykiwanie parametrów, nagłówków i ciasteczek, statusy odpowiedzi
      * Obsługa wyjątków
      * Konwertery i obiekty transferowe
      * Integracja z frameworkami webowymi (Angular)
      * Dokumentacja API z wykorzystaniem Swagger
-6. Warstwa webowa
+* Warstwa webowa
      * Spring MVC – istotne komponenty i ich konfiguracja, cykl obsługi żądania, web scopes
      * Budowa i mapowanie kontrolerów
      * Tworzenie widoków – szablony, obsługa formularzy, walidacja, internacjonalizacja
      * Sesja i zarządzanie stanem
      * Integracja z innymi technologiami
-7. Spring Boot
+* Spring Boot
      * Przeznaczenie, możliwości, zasada działania
      * Budowanie, wdrażanie i uruchamianie aplikacji
      * Klasy konfiguracyjne / autokonfiguracja
      * Zmiana ustawień domyślnych
      * Migracja do Spring Boot
-8. Spring WebFlux
+* Spring WebFlux
      * Wstęp do programowania reaktywnego i biblioteki Reactor
      * Podstawy frameworka WebFlux
      * Budowanie reaktywnych aplikacji
      * RxJava / RxJS jako alternatywne przykłady reaktywnych bibliotek
-9. Integracja
+* Integracja
      * Wprowadzenie
      * Integracja Java EE (JMS,EJB,JNDI)
      * WebSockets, Email, Scheduler
-10. Testowanie
+* Testowanie
      * Wprowadzenie do testowania jednostkowego
      * Narzędzia xUnit
      * Obiekty zastępcze i wykorzystanie biblioteki Mockito
@@ -85,12 +85,12 @@ Kurs podzielony jest na 12 modułów obejmujących kluczowe zagadnienia z zakres
      * Wprowadzenie do TDD
      * Testy jednostkowe na poziomie repozytoriów, usług i kontrolerów
      * Testy integracyjne
-11. Wprowadzenie do Spring Security
+* Wprowadzenie do Spring Security
      * Architektura, komponenty i podstawowe usługi
      * Konfiguracja bezpieczeństwa (uwierzytelnianie, autoryzacja dostępu) na poziomie webowym i metod poszczególnych komponentów
      * Zabezpieczenie usług REST (tokeny JWT, OAuth2)
      * Bezpieczna komunikacja
-12. Wdrażanie
+* Wdrażanie
      * Wprowadzenie do konteneryzacji z wykorzystaniem Dockera
      * Wdrożenie aplikacji na VPS
      * Ciągła integracja z użyciem Jenkins
