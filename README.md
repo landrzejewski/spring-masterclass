@@ -31,7 +31,7 @@ Kurs podzielony jest na 12 modułów obejmujących kluczowe zagadnienia z zakres
     * Przegląd implementacji dostępnych kontenerów
     * Komponenty zarządzane – konfiguracja, wstrzykiwanie, zasięg, cykl życia
     * Programowanie przez zdarzenia
-    * Inne istotne elementy (Resources, Converters, PostProcessors)
+    * Inne istotne elementy
 3. Programowanie aspektowe
     * Wprowadzenie – koncepcja, możliwości i potencjalne zastosowanie
     * Realizacja AOP na poziomie Spring (dynamic proxies vs. CGLIB)
