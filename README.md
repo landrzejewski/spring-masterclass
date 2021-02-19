@@ -1,6 +1,6 @@
 ![Kurs Spring](/kurs_spring.png?raw=true)
 
-<p align="center">
+<p style="text-align: center;">
     <a href="https://kursy.sages.pl/kursy/spring-framework">Kup teraz</a>
 </p>
 
