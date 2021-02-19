@@ -95,4 +95,4 @@ Kurs podzielony jest na 12 modułów obejmujących kluczowe zagadnienia z zakres
      * Bonus: Wprowadzenie do Spring Cloud
      * Bonus: Wprowadzenie do Kubernetes
     
-![Alt text](/kurs_spring.png?raw=true "Opinie")
+![Alt text](/spring_poll.png?raw=true "Opinie")
