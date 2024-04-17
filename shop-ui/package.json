@@ -27,7 +27,7 @@
     "popper.js": "^1.16.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1000.4",
+    "@angular-devkit/build-angular": "~17.3.4",
     "@angular/cli": "^10.0.8",
     "@angular/compiler-cli": "~10.0.5",
     "@types/jasmine": "~3.5.0",
